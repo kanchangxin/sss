@@ -1,0 +1,14 @@
+
+
+include 'sss-domain'
+
+include 'sss-api'
+
+include 'sss-service'
+
+include 'sss-admin-war'
+
+include 'sss-web-war'
+
+
+

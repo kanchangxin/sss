@@ -1,0 +1,18 @@
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile "org.freemarker:freemarker:$freemarkerVersion"
+
+    compile group: "cn.thinkjoy.common", name: "thinkjoy-mu-common", version: "$thinkjoyCommonVersion", changing: true
+
+    //在serivice层以及已经依赖了，compile "cn.thinkjoy.ucenter:ucm-api:$ucmVersion"
+
+    compile project(':sss-service')
+
+    //compile "cn.thinkjoy.ucenter:ucm-api:$ucmVersion"
+    compile group: "cn.thinkjoy.ucenter", name: "ucenter-client", version: "$ucenterVersion", changing: true
+
+    //compile group: "cn.thinkjoy.common", name: "thinkjoy-web-common", version: "$thinkjoyCommonVersion", changing: true
+
+}
+

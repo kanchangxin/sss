@@ -1,0 +1,32 @@
+allprojects {
+    thinkjoyCommonVersion = "0.1.34-SNAPSHOT"
+    thinkjoyCloudstackVersion = "0.0.32-SNAPSHOT"
+
+    springTestVersion = "4.1.0.RELEASE"
+
+    mysqlConnectorVersion = "5.1.26"
+
+    dubboVersion = "2.5.3"
+    dubboZKClientVersion = "0.4"
+
+    freemarkerVersion = "2.3.22"
+    ucmVersion = "1.0.0-SNAPSHOT"
+
+    //暂时没用uicUcmVersion = "1.0.0-SNAPSHOT"
+    ucenterVersion="0.0.54-SNAPSHOT"
+
+    //===================cmc1===========
+//    thinkjoyCommonVersion = "0.1.34-SNAPSHOT"
+//    thinkjoyCloudstackVersion = "0.0.29-SNAPSHOT"
+//
+//    springTestVersion = "4.1.0.RELEASE"
+//
+//    mysqlConnectorVersion = "5.1.26"
+//
+//    dubboVersion = "2.5.3"
+//    dubboZKClientVersion = "0.4"
+//
+//
+//    freemarkerVersion = "2.3.20"
+//    ucmVersion = "0.0.27-SNAPSHOT"
+}

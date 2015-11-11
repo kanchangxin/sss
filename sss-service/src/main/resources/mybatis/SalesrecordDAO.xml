@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.thinkjoy.sss.dao.ISalesrecordDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+
+    <sql id="Base_Column_List">
+        id as id ,
+        shopHistoryId as shopHistoryId ,
+        productId as productId ,
+        price as price ,
+        salesVolume as salesVolume ,
+        subtotal as subtotal ,
+        output as output ,
+        expiredTime as expiredTime ,
+        salesDate as salesDate 
+    </sql>
+    <insert id="insert" parameterType="Salesrecord">
+        INSERT INTO xkf_salesrecord (
+        shopHistoryId,
+        productId,
+        price,
+        salesVolume,
+        subtotal,
+        output,
+        expiredTime,
+        salesDate
+        ) VALUES (
+        #{shopHistoryId},
+        #{productId},
+        #{price},
+        #{salesVolume},
+        #{subtotal},
+        #{output},
+        #{expiredTime},
+        #{salesDate}
+        )
+            <selectKey resultType="java.lang.Integer" keyProperty="id">
+                SELECT LAST_INSERT_ID() AS ID
+            </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="Salesrecord">
+        UPDATE xkf_salesrecord
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="shopHistoryId!=null">
+                shopHistoryId = #{shopHistoryId},
+            </if>
+            <if test="productId!=null">
+                productId = #{productId},
+            </if>
+            <if test="price!=null">
+                price = #{price},
+            </if>
+            <if test="salesVolume!=null">
+                salesVolume = #{salesVolume},
+            </if>
+            <if test="subtotal!=null">
+                subtotal = #{subtotal},
+            </if>
+            <if test="output!=null">
+                output = #{output},
+            </if>
+            <if test="expiredTime!=null">
+                expiredTime = #{expiredTime},
+            </if>
+            <if test="salesDate!=null">
+                salesDate = #{salesDate},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE xkf_salesrecord
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.shopHistoryId!=null">
+                shopHistoryId = #{map.shopHistoryId},
+            </if>
+            <if test="map.productId!=null">
+                productId = #{map.productId},
+            </if>
+            <if test="map.price!=null">
+                price = #{map.price},
+            </if>
+            <if test="map.salesVolume!=null">
+                salesVolume = #{map.salesVolume},
+            </if>
+            <if test="map.subtotal!=null">
+                subtotal = #{map.subtotal},
+            </if>
+            <if test="map.output!=null">
+                output = #{map.output},
+            </if>
+            <if test="map.expiredTime!=null">
+                expiredTime = #{map.expiredTime},
+            </if>
+            <if test="map.salesDate!=null">
+                salesDate = #{map.salesDate},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE xkf_salesrecord
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.shopHistoryId!=null">
+                shopHistoryId = #{update.shopHistoryId},
+            </if>
+            <if test="update.productId!=null">
+                productId = #{update.productId},
+            </if>
+            <if test="update.price!=null">
+                price = #{update.price},
+            </if>
+            <if test="update.salesVolume!=null">
+                salesVolume = #{update.salesVolume},
+            </if>
+            <if test="update.subtotal!=null">
+                subtotal = #{update.subtotal},
+            </if>
+            <if test="update.output!=null">
+                output = #{update.output},
+            </if>
+            <if test="update.expiredTime!=null">
+                expiredTime = #{update.expiredTime},
+            </if>
+            <if test="update.salesDate!=null">
+                salesDate = #{update.salesDate},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.shopHistoryId!=null">
+                AND shopHistoryId = #{condition.shopHistoryId}
+            </if>
+            <if test="condition.productId!=null">
+                AND productId = #{condition.productId}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.salesVolume!=null">
+                AND salesVolume = #{condition.salesVolume}
+            </if>
+            <if test="condition.subtotal!=null">
+                AND subtotal = #{condition.subtotal}
+            </if>
+            <if test="condition.output!=null">
+                AND output = #{condition.output}
+            </if>
+            <if test="condition.expiredTime!=null">
+                AND expiredTime = #{condition.expiredTime}
+            </if>
+            <if test="condition.salesDate!=null">
+                AND salesDate = #{condition.salesDate}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO xkf_salesrecord (
+                shopHistoryId,
+                productId,
+                price,
+                salesVolume,
+                subtotal,
+                output,
+                expiredTime,
+                salesDate
+        ) VALUES (
+                    #{map.shopHistoryId},
+                    #{map.productId},
+                    #{map.price},
+                    #{map.salesVolume},
+                    #{map.subtotal},
+                    #{map.output},
+                    #{map.expiredTime},
+                    #{map.salesDate}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="Salesrecord">
+        UPDATE xkf_salesrecord
+        <trim prefix="SET" suffixOverrides=",">
+            shopHistoryId = #{shopHistoryId},
+            productId = #{productId},
+            price = #{price},
+            salesVolume = #{salesVolume},
+            subtotal = #{subtotal},
+            output = #{output},
+            expiredTime = #{expiredTime},
+            salesDate = #{salesDate},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="shopHistoryId!=null">
+                AND shopHistoryId = #{shopHistoryId}
+            </if>
+            <if test="productId!=null">
+                AND productId = #{productId}
+            </if>
+            <if test="price!=null">
+                AND price = #{price}
+            </if>
+            <if test="salesVolume!=null">
+                AND salesVolume = #{salesVolume}
+            </if>
+            <if test="subtotal!=null">
+                AND subtotal = #{subtotal}
+            </if>
+            <if test="output!=null">
+                AND output = #{output}
+            </if>
+            <if test="expiredTime!=null">
+                AND expiredTime = #{expiredTime}
+            </if>
+            <if test="salesDate!=null">
+                AND salesDate = #{salesDate}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM xkf_salesrecord WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="Salesrecord">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="Salesrecord">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM xkf_salesrecord WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="Salesrecord">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM xkf_salesrecord WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Salesrecord">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM xkf_salesrecord
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="Salesrecord">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                        <if test="selector.id!=null">
+                            , id
+                        </if>
+                        <if test="selector.shopHistoryId!=null">
+                            , shopHistoryId
+                        </if>
+                        <if test="selector.productId!=null">
+                            , productId
+                        </if>
+                        <if test="selector.price!=null">
+                            , price
+                        </if>
+                        <if test="selector.salesVolume!=null">
+                            , salesVolume
+                        </if>
+                        <if test="selector.subtotal!=null">
+                            , subtotal
+                        </if>
+                        <if test="selector.output!=null">
+                            , output
+                        </if>
+                        <if test="selector.expiredTime!=null">
+                            , expiredTime
+                        </if>
+                        <if test="selector.salesDate!=null">
+                            , salesDate
+                        </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+        <include refid="Base_Column_List" />
+        </if>
+        FROM xkf_salesrecord
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   ${condition.id.field}  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.shopHistoryId!=null">
+                ${condition.groupOp}   ${condition.shopHistoryId.field}  ${condition.shopHistoryId.op}  #{condition.shopHistoryId.data}
+            </if>
+            <if test="condition.productId!=null">
+                ${condition.groupOp}   ${condition.productId.field}  ${condition.productId.op}  #{condition.productId.data}
+            </if>
+            <if test="condition.price!=null">
+                ${condition.groupOp}   ${condition.price.field}  ${condition.price.op}  #{condition.price.data}
+            </if>
+            <if test="condition.salesVolume!=null">
+                ${condition.groupOp}   ${condition.salesVolume.field}  ${condition.salesVolume.op}  #{condition.salesVolume.data}
+            </if>
+            <if test="condition.subtotal!=null">
+                ${condition.groupOp}   ${condition.subtotal.field}  ${condition.subtotal.op}  #{condition.subtotal.data}
+            </if>
+            <if test="condition.output!=null">
+                ${condition.groupOp}   ${condition.output.field}  ${condition.output.op}  #{condition.output.data}
+            </if>
+            <if test="condition.expiredTime!=null">
+                ${condition.groupOp}   ${condition.expiredTime.field}  ${condition.expiredTime.op}  #{condition.expiredTime.data}
+            </if>
+            <if test="condition.salesDate!=null">
+                ${condition.groupOp}   ${condition.salesDate.field}  ${condition.salesDate.op}  #{condition.salesDate.data}
+            </if>
+
+
+    </where>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="Salesrecord">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.shopHistoryId!=null">
+                        , shopHistoryId
+                    </if>
+                    <if test="selector.productId!=null">
+                        , productId
+                    </if>
+                    <if test="selector.price!=null">
+                        , price
+                    </if>
+                    <if test="selector.salesVolume!=null">
+                        , salesVolume
+                    </if>
+                    <if test="selector.subtotal!=null">
+                        , subtotal
+                    </if>
+                    <if test="selector.output!=null">
+                        , output
+                    </if>
+                    <if test="selector.expiredTime!=null">
+                        , expiredTime
+                    </if>
+                    <if test="selector.salesDate!=null">
+                        , salesDate
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id like CONCAT('%', #{condition.id} , '%')
+            </if>
+            <if test="condition.shopHistoryId!=null">
+                AND shopHistoryId like CONCAT('%', #{condition.shopHistoryId} , '%')
+            </if>
+            <if test="condition.productId!=null">
+                AND productId like CONCAT('%', #{condition.productId} , '%')
+            </if>
+            <if test="condition.price!=null">
+                AND price like CONCAT('%', #{condition.price} , '%')
+            </if>
+            <if test="condition.salesVolume!=null">
+                AND salesVolume like CONCAT('%', #{condition.salesVolume} , '%')
+            </if>
+            <if test="condition.subtotal!=null">
+                AND subtotal like CONCAT('%', #{condition.subtotal} , '%')
+            </if>
+            <if test="condition.output!=null">
+                AND output like CONCAT('%', #{condition.output} , '%')
+            </if>
+            <if test="condition.expiredTime!=null">
+                AND expiredTime like CONCAT('%', #{condition.expiredTime} , '%')
+            </if>
+            <if test="condition.salesDate!=null">
+                AND salesDate like CONCAT('%', #{condition.salesDate} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="Salesrecord">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                <if test="selector.id!=null">
+                    , id
+                </if>
+                <if test="selector.shopHistoryId!=null">
+                    , shopHistoryId
+                </if>
+                <if test="selector.productId!=null">
+                    , productId
+                </if>
+                <if test="selector.price!=null">
+                    , price
+                </if>
+                <if test="selector.salesVolume!=null">
+                    , salesVolume
+                </if>
+                <if test="selector.subtotal!=null">
+                    , subtotal
+                </if>
+                <if test="selector.output!=null">
+                    , output
+                </if>
+                <if test="selector.expiredTime!=null">
+                    , expiredTime
+                </if>
+                <if test="selector.salesDate!=null">
+                    , salesDate
+                </if>
+        </trim>
+    </if>
+<if test="selector==null">
+<include refid="Base_Column_List" />
+</if>
+        FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.shopHistoryId!=null">
+                AND shopHistoryId = #{condition.shopHistoryId}
+            </if>
+            <if test="condition.productId!=null">
+                AND productId = #{condition.productId}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.salesVolume!=null">
+                AND salesVolume = #{condition.salesVolume}
+            </if>
+            <if test="condition.subtotal!=null">
+                AND subtotal = #{condition.subtotal}
+            </if>
+            <if test="condition.output!=null">
+                AND output = #{condition.output}
+            </if>
+            <if test="condition.expiredTime!=null">
+                AND expiredTime = #{condition.expiredTime}
+            </if>
+            <if test="condition.salesDate!=null">
+                AND salesDate = #{condition.salesDate}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="Salesrecord">
+        SELECT
+        <if test="selector!=null">
+            <trim prefixOverrides=",">
+                    <if test="selector.id!=null">
+                        , id
+                    </if>
+                    <if test="selector.shopHistoryId!=null">
+                        , shopHistoryId
+                    </if>
+                    <if test="selector.productId!=null">
+                        , productId
+                    </if>
+                    <if test="selector.price!=null">
+                        , price
+                    </if>
+                    <if test="selector.salesVolume!=null">
+                        , salesVolume
+                    </if>
+                    <if test="selector.subtotal!=null">
+                        , subtotal
+                    </if>
+                    <if test="selector.output!=null">
+                        , output
+                    </if>
+                    <if test="selector.expiredTime!=null">
+                        , expiredTime
+                    </if>
+                    <if test="selector.salesDate!=null">
+                        , salesDate
+                    </if>
+            </trim>
+        </if>
+        <if test="selector==null">
+            <include refid="Base_Column_List" />
+        </if>
+        FROM xkf_salesrecord
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.shopHistoryId!=null">
+                AND shopHistoryId = #{condition.shopHistoryId}
+            </if>
+            <if test="condition.productId!=null">
+                AND productId = #{condition.productId}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.salesVolume!=null">
+                AND salesVolume = #{condition.salesVolume}
+            </if>
+            <if test="condition.subtotal!=null">
+                AND subtotal = #{condition.subtotal}
+            </if>
+            <if test="condition.output!=null">
+                AND output = #{condition.output}
+            </if>
+            <if test="condition.expiredTime!=null">
+                AND expiredTime = #{condition.expiredTime}
+            </if>
+            <if test="condition.salesDate!=null">
+                AND salesDate = #{condition.salesDate}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM xkf_salesrecord
+       <where>
+           <if test="id!=null">
+               ${groupOp} ${id.field} ${id.op}  #{id.data}
+           </if>
+           <if test="shopHistoryId!=null">
+               ${groupOp} ${shopHistoryId.field} ${shopHistoryId.op}  #{shopHistoryId.data}
+           </if>
+           <if test="productId!=null">
+               ${groupOp} ${productId.field} ${productId.op}  #{productId.data}
+           </if>
+           <if test="price!=null">
+               ${groupOp} ${price.field} ${price.op}  #{price.data}
+           </if>
+           <if test="salesVolume!=null">
+               ${groupOp} ${salesVolume.field} ${salesVolume.op}  #{salesVolume.data}
+           </if>
+           <if test="subtotal!=null">
+               ${groupOp} ${subtotal.field} ${subtotal.op}  #{subtotal.data}
+           </if>
+           <if test="output!=null">
+               ${groupOp} ${output.field} ${output.op}  #{output.data}
+           </if>
+           <if test="expiredTime!=null">
+               ${groupOp} ${expiredTime.field} ${expiredTime.op}  #{expiredTime.data}
+           </if>
+           <if test="salesDate!=null">
+               ${groupOp} ${salesDate.field} ${salesDate.op}  #{salesDate.data}
+           </if>
+
+       </where>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM xkf_salesrecord
+    </select>
+
+</mapper>
+

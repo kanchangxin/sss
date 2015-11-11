@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.qtone.open"/>
+    <bean id="QTOAuthConfig" class="com.qtone.open.QTOpenApiConfig">
+        <property name="debugKey" value="${debugKey}"/>
+        <property name="client_id" value="${client_id}"/>
+        <property name="client_secret" value="${client_secret}"/>
+        <property name="loginUrl" value="${loginUrl}"/>
+        <property name="validateTokenUrl" value="${validateTokenUrl}"/>
+        <property name="logoutPattern" value="${logoutPattern}"/>
+        <property name="redirectUrlAfterLogin" value="${redirectUrlAfterLogin}"/>
+        <property name="redirectUrlAfterLogout" value="${redirectUrlAfterLogout}"/>
+        <property name="serverUri" value="${serverUri}"/>
+        <property name="secret" value="${secret}"/>
+        <property name="exclusions" value="${exclusions}"/>
+        <property name="product" value="${product}"/>
+        <property name="appKey" value="${appKey}"/>
+    </bean>
+    <bean id="iqtoAuthListener" class="${iqtoAuthListenerBean}"/>
+
+
+    <bean id="QTOAAuthenticator"
+          class="com.qtone.open.ucm.client.QTOAAuthenticator" init-method="init">
+        <property name="qtOpenApiConfig" ref="QTOAuthConfig"/>
+        <property name="iqtoAuthListener" ref="iqtoAuthListener"/>
+    </bean>
+
+
+    <bean id="delegatingSecurityFilter" class="com.qtone.open.ucm.client.QTOAuthFilter">
+        <property name="authenticator" ref="QTOAAuthenticator"/>
+    </bean>
+
+</beans>
